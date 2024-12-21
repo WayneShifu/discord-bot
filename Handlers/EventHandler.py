@@ -27,9 +27,6 @@ class EventHandler:
                 channel = message.channel
                 print(f"Message from {message.author} in channel {channel.name}: {message.content}")
 
-            # Check if a GIF should be sent
-            await RandomGiphy(self.giphy_api_key, message).send()
-
             # Check if the message is a valid command
             if message.content.startswith('$'):
                 ctx = await self.bot.get_context(message)

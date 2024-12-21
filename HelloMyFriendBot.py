@@ -4,6 +4,8 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 from Bots.DrawBot import DrawBot
+from Bots.GiphyResponder import GiphyResponder
+from Bots.WordChainGame import WordChainGame
 from Handlers.EventHandler import EventHandler
 from Bots.QuotesBot import QuotesBot
 import asyncio
@@ -31,8 +33,10 @@ class HelloMyFriendBot:
         EventHandler(self.bot, GIPHY_API_KEY)
 
     async def setup(self):
+        await self.bot.add_cog(GiphyResponder(self.bot, self.giphy_api_key))
         await self.bot.add_cog(QuotesBot(self.bot))
         await self.bot.add_cog(DrawBot(self.bot))
+        await self.bot.add_cog(WordChainGame(self.bot))
 
     def run(self):
         self.bot.run(DISCORD_TOKEN)
